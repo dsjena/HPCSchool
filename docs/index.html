@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="AsciiDoc 8.6.9">
+<title>A Minimal Know How - HPC Computing Facility</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; vertical-align: text-bottom; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+
+
+@media screen {
+  body {
+    max-width: 50em; /* approximately 80 characters wide */
+    margin-left: 16em;
+  }
+
+  #toc {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 13em;
+    padding: 0.5em;
+    padding-bottom: 1.5em;
+    margin: 0;
+    overflow: auto;
+    border-right: 3px solid #f8f8f8;
+    background-color: white;
+  }
+
+  #toc .toclevel1 {
+    margin-top: 0.5em;
+  }
+
+  #toc .toclevel2 {
+    margin-top: 0.25em;
+    display: list-item;
+    color: #aaaaaa;
+  }
+
+  #toctitle {
+    margin-top: 0.5em;
+  }
+}
+
+
+@media screen {
+  body {
+    max-width: 50em; /* approximately 80 characters wide */
+    margin-left: 16em;
+  }
+
+  #toc {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 13em;
+    padding: 0.5em;
+    padding-bottom: 1.5em;
+    margin: 0;
+    overflow: auto;
+    border-right: 3px solid #f8f8f8;
+    background-color: white;
+  }
+
+  #toc .toclevel1 {
+    margin-top: 0.5em;
+  }
+
+  #toc .toclevel2 {
+    margin-top: 0.25em;
+    display: list-item;
+    color: #aaaaaa;
+  }
+
+  #toctitle {
+    margin-top: 0.5em;
+  }
+}
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install(2);
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>A Minimal Know How - HPC Computing Facility</h1>
+<div id="toc">
+  <div id="toctitle">Table of Contents</div>
+  <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph"><p>The HPC cluster is configured on CentOS 6.6 with 252 64bit CPU cores, 1TB
+aggregated RAM (48GB/node), with 1G Ethernet plus 40-10G QDR Infiniband
+interconnects. About 5TB of share storage for user data with large 1TB per-node
+<em>/tmp</em> disk space as scratch space available for local needs. A sets of
+application softwares are being installed (detail can be found <a href="packages.html">here</a> - <span class="red">incomplete!!!</span>).
+Following sections show very basic information about using this cluster facility.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note">
+</td>
+<td class="content">We have setup a google group for discussions <span class="red yellow-background"><a href="mailto:"><em>[takeout][from][public]</em></a></span>.
+Please send you querries to this mail id.</td>
+</tr></table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="connect">How do I connect to HPC?</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>To connect using a Mac or Linux, open the Terminal application and type:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>ssh -Y yourlogin@172.16.22.201
+# the '-Y' requests that the X11 protocol is tunneled back to you, encrypted inside of ssh.</pre>
+</div></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note">
+</td>
+<td class="content">Login IP is <span class="red yellow-background big">172.16.22.201</span></td>
+</tr></table>
+</div>
+<div class="paragraph"><p>Be sure to use the <em>-Y</em> or <em>-X</em> options, if you want to view X11 graphics. Occasionally you may
+get the error below when you try to log into HPC or among the HPC nodes:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that the RSA host key has just been changed.
+The fingerprint for the RSA key sent by the remote host is
+31:5f:75:e9:5c:0e:b9:6a:11:e1:7f:98:ee:c2:e8:71.
+Please contact your system administrator.
+Add correct host key in /root/.ssh/known_hosts to get rid of this message.
+Offending key in /root/.ssh/known_hosts:5
+Password authentication is disabled to avoid man-in-the-middle attacks.
+Keyboard-interactive authentication is disabled to avoid man-in-the-middle attacks.
+Agent forwarding is disabled to avoid man-in-the-middle attacks.
+X11 forwarding is disabled to avoid man-in-the-middle attacks.</pre>
+</div></div>
+<div class="paragraph"><p>The reason for this error is that the computer to which you&#8217;re connecting to has changed its
+identification key (<span class="red">Since you were using IISERM HPC earlier, you might get above
+connection error</span>). The fix is buried in the error message itself.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>Offending key in /root/.ssh/known_hosts:5</pre>
+</div></div>
+<div class="paragraph"><p>Simply edit that file and delete the line referenced.  When you log in again, there will be a
+notification that the key has been added to your <em>known_hosts</em> file.  More simply, you can also
+just delete your <em>~/.ssh/known_hosts</em> file.  The missing connection info will be regenerated when
+you ssh to new nodes.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note">
+</td>
+<td class="content">After you log in&#8230;</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>The default shell (or environment in which you type commands) for your
+HPC login is <em>bash</em>.  I am sure, you&#8217;re going to be using HPC for more than a few times,
+it&#8217;s useful to set up a file of aliases to useful commands and then <em>source</em> that
+file from your <em>~/.bashrc</em>.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_changing_password">Changing Password</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Once you logged into the usernode, you can change password. To change password you must
+do following</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>[sjena@usernode ~]$ ssh hpciiserm</pre>
+</div></div>
+<div class="paragraph"><p>It will initiate a login session without any password in the server.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note">
+</td>
+<td class="content"><span class="red">NEVER change password in <em>usernode</em></span>, if you do so, it will reset to your
+old password.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>You should see following prompt like:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>[sjena@hpciiserm ~]$
+then do
+[sjena@hpciiserm ~]$ passwd</pre>
+</div></div>
+<div class="paragraph"><p>change your password and exit.</p></div>
+<div class="paragraph"><p>Once you done above procedure, it will take some time <em>at least 90 minutes</em> (automatic)
+to sync. If you exit from <em>usernode</em> and you want to re-login within this time, your old password
+should work.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note">
+</td>
+<td class="content">Once you are logged in to <em>usernode</em>, you don&#8217;t need password to login to any computing node as
+the HPC is like a single computer with several cores available to you.  However, password is needed
+to login from outside to HPC through <em>usernode</em>. HPC is like a single computer with
+several cores available to you.</td>
+</tr></table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_other_basic_info_coming_soon">Other Basic Info - coming soon.</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>On the login node, you shouldn&#8217;t do anything too computationally strenuous.  If you run something
+that takes more than an hour or so to complete, you should be running on an interactive node or
+submit it to one of the batch queues (via <em>qsub batch_script.sh</em>).</p></div>
+<div class="sect2">
+<h3 id="_can_i_compile_code">Can I compile code?</h3>
+<div class="paragraph"><p>Yes.<br></p></div>
+<div class="paragraph"><p>We have the full GNU tool-chain available on both the login nodes so normal compilation tools such
+as autoconf, automake,  libtool, make, gcc, g++, gfortran, gdb, ddd, java, python, perl,
+etc are available to you.   Please let us know if there are other tools or libraries you need
+that aren&#8217;t available.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_compiling_your_own_code">Compiling your own code</h3>
+<div class="paragraph"><p>Use gnu-tool chain.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_adding_a_package">Adding a Package</h3>
+<div class="paragraph"><p>Adding a package is similar to keeping the executation or your own program. If you keep any <em>executable</em>
+in your area, it will be accessible in all computenode.</p></div>
+<div class="paragraph"><p>The detail is given <a href="index.html#_installation_of_new_software_packages">here</a>.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_storage_amp_quota">Storage &amp; Quota</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_disk_space">Disk Space</h3>
+<div class="paragraph"><p>HPC disk storage is limited and an user quota has been set for all user spaces (/home). All users
+are given 10GB of user space. There is no notification system to inform you if you exceed the quota
+limit. When you exced the quota limit you won&#8217;t be able to perform write operation i.e. can&#8217;t create
+file or run jobs if you pass the hard quota limit.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note">
+</td>
+<td class="content">10GB of user space to keep your codes and important files. To keep large files, outputs of jobs etc., you should
+use <em>/home/storage1/$USER</em>.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>HPC has about 7TB of storage on to be shared among IISER HPCs users, and the instantaneous needs
+of those users varies tremendously. We do not use disk quotas on this storage to enforce user
+limits to allow substantial dynamic storage use. However, if you use hundreds of GB, the onus is
+on you to clean up your files and decrease that usage as soon as you’re done with it.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note">
+</td>
+<td class="content"><span class="red">(Very Important)</span> Avoid creating huge number of files in a single directory. It will
+affect storage performance especially when your job is accessing such directories frequently.
+This is called Directory Cache Thrashing.</td>
+</tr></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_scratch_space">Scratch Space</h3>
+<div class="paragraph"><p>If your code accessing large I/O, you should use local scratch space. This is to prevent this network jam, there is a large <em>/tmp</em> directory on each node (writable by all
+users, but <em>sticky</em> - files written can only be deleted by the user who wrote them or by admin.
+However, if you use hundreds of GB, the onus is on you to clean up your files and decrease that
+usage as soon as you’re done with it. (automatic script as regular cleanup will be added if needed).</p></div>
+</div>
+<div class="sect2">
+<h3 id="_monitoring_disk_usage_amp_quota">Monitoring Disk Usage &amp; Quota</h3>
+<div class="paragraph"><p>Use <em>quota -s</em> command to see your ussage.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>sjena@usernode~$ quota -s
+Disk quotas for user sjena (uid 500):
+     Filesystem  blocks   quota   limit   grace   files   quota   limit   grace
+      /dev/sda1   7009M  10240M  11264M           21140   58000   60000</pre>
+</div></div>
+<div class="paragraph"><p>This means:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>Filesystem = /dev/sda1 : this is your home directory
+blocks     = 7009M     : Current data usage is 7009 MB
+quota      = 10240M    : Soft quota limit is 10GB
+limit      = 11264M    : Hard quota limit is 11GB
+grace      =           : if you exceed, it will set a grace period to cleanup
+files      = 21140     : Number of files in your account
+quota      = 58000     : Soft limit for maximum number of files you can create
+limit      = 60000     : Hard limit for maximum number of files you can create</pre>
+</div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="SGE_batch_jobs">Batch Job &amp; Queues</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_job_scheduler">Job Scheduler</h3>
+<div class="paragraph"><p>Our cluster is configured with SGE Batch Job Submission tool. The Sun Grid Engine (SGE) queuing system is useful when you have a lot of tasks to execute and want to distribute the tasks over a cluster of machines. It has three basic features</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Scheduling - allows you to schedule a virtually unlimited amount of work to be performed when resources become available. This means you can simply submit as many tasks (or jobs) as you like and let the queuing system handle executing them all.
+</p>
+</li>
+<li>
+<p>
+Load Balancing - automatically distributes tasks across the cluster such that any one node doesn&#8217;t get overloaded compared to the rest.
+</p>
+</li>
+<li>
+<p>
+Monitoring/Accounting - ability to monitor all submitted jobs and query which cluster nodes they are running on, whether they’re finished, encountered an error, etc. Also allows querying job history to see which tasks were executed on a given date, by a given user, etc.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>If you would like to know more, you may prefer to check a plenty of documents available in the web. Let me start with what minimal set of information (mostly taken from web from several sources)</p></div>
+</div>
+<div class="sect2">
+<h3 id="_submitting_jobs">Submitting Jobs</h3>
+<div class="paragraph"><p>A job in SGE represents a task to be performed on a node in the cluster and contains the command line used to start the task. A job may have specific resource requirements but in general should be agnostic to which node in the cluster it runs on as long as its resource requirements are met.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>All jobs require at least one available slot on a node in the cluster to run.</pre>
+</div></div>
+<div class="paragraph"><p><span class="red">Submitting jobs is done using the <em>qsub</em> command</span>. Let’s try submitting a simple job that runs the <em>hostname</em> command on a given cluster node:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>sjena@usernode~$ qsub -V -b y -cwd hostname
+Your job 1 ("hostname") has been submitted</pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+The -V option to qsub states that the job should have the same environment variables as the shell executing qsub (recommended)
+</p>
+</li>
+<li>
+<p>
+The -b option to qsub states that the command being executed could be a single binary executable or a bash script. In this case the command hostname is a single binary. This option takes a y or n argument indicating either yes the command is a binary or no it is not a binary.
+</p>
+</li>
+<li>
+<p>
+The -cwd option to qsub tells Sun Grid Engine that the job should be executed in the same directory that qsub was called.
+</p>
+</li>
+<li>
+<p>
+The last argument to qsub is the command to be executed (hostname in this case)
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Notice that the qsub command, when successful, will print the job number to stdout. You can use the job number to monitor the job’s status and progress within the queue as we’ll see in the next section.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note">
+</td>
+<td class="content">Job submissions are done in a dedicated Node called <em>usernode</em> in our HPCIISERM, executions happen on
+all compute nodes. <span class="red yellow-background large">You are requested not to execute any job in <em>usernode</em></span> - node where you
+login in. If you run manual jobs in usernode, jobs will be killed automatically. Therefore,  you [red]# MUST #
+use SGE commands for job submission, for instance, <em>qsub</em> to submit job. If you use <em>qsub</em>, the submission will
+be taken care automatically.</td>
+</tr></table>
+</div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note">
+</td>
+<td class="content"><span class="red yellow-background large">Never login to <em>hpciiserm</em> as well as NEVER should submit any job in <em>hpciiserm</em></span> - Jobs will be terminated without notice and the automated script might block the account.</td>
+</tr></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_monitoring_jobs_in_the_queue">Monitoring Jobs in the Queue</h3>
+<div class="paragraph"><p>Now that our job has been submitted, let’s take a look at the job’s status in the queue using the command <em>qstat</em>:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>[sjena@usernode ~]$ qstat
+job-ID  prior name  user state submit/start at queue      slots      ja-task-ID
+...............................................................................
+4001 0.55500 hostname   sjena r  03/03/2017 10:16:32 all.q@compute-0-0.local  1
+[sjena@usernode ~]$</pre>
+</div></div>
+<div class="paragraph"><p>From this output, we can see that the job is in the <em>r</em> state which is running in node compute-0-0.
+Once the job has finished, the job will be removed from the queue and will no longer appear in the
+output of <em>qstat</em>. You should see the job outputs</p></div>
+</div>
+<div class="sect2">
+<h3 id="_outputs">Outputs</h3>
+<div class="paragraph"><p>SGE creates stdout and stderr files in the job’s working directory for each job executed. If any additional files are created during a job’s execution, they will also be located in the job’s working directory unless explicitly saved elsewhere (I will discuss later).<span class="red">The job’s stdout and stderr files are named after the job with the extension ending in the job’s number</span>. For the simple job submitted above, we have:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>[sjena@usernode ~]$ ls
+hostname.e4001  hostname.o4001  mpi
+[sjena@usernode ~]$ cat hostname.e4001
+[sjena@usernode ~]$ cat hostname.o4001
+compute-0-0.local
+[sjena@usernode ~]$</pre>
+</div></div>
+<div class="paragraph"><p>Notice that SGE automatically named the job <em>hostname</em> and created two output files: <em>hostname.e4001</em> and <em>hostname.o4001</em>. The <em>e</em> stands for stderr and the <em>o</em> for stdout. The <em>4001</em> at the end of the files’ extension is the job number. So if the job had been named <em>extraordinary_job</em> and was job <em>#47</em> submitted, the output files would look like: <em>extraordinary_job.e47</em> <em>extraordinary_job.o47</em></p></div>
+</div>
+<div class="sect2">
+<h3 id="_deleting_a_job">Deleting a Job</h3>
+<div class="paragraph"><p>What if a job is stuck in the queue, is taking too long to run, or was simply started with incorrect parameters? You can delete a job from the queue using the <em>qdel</em> command in SGE. Below we launch a simple job <em>mpi-ring.qsub</em>, and we can kill it using <em>qdel</em>:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>[sjena@usernode mpi]$ qsub -pe orte 24 mpi-ring.qsub
+Your job 4009 ("mpi-ring.qsub") has been submitted</pre>
+</div></div>
+<div class="paragraph"><p>Check the Job status</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>[sjena@usernode mpi]$ qstat
+job-ID  prior name  user state submit/start at queue      slots      ja-task-ID
+...............................................................................
+   4009 0.00000 mpi-ring.q sjena        qw    03/03/2017 11:24:09            24</pre>
+</div></div>
+<div class="paragraph"><p><em>qw</em> means Job is in waiting stage. you can an kill it here, but we want job to run
+and then kill. Checking again after few second:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>[sjena@usernode mpi]$ qstat
+job-ID  prior name  user state submit/start at queue      slots      ja-task-ID
+...............................................................................
+   4009 0.55500 mpi-ring.q sjena r 03/03/2017 11:24:17 all.q@compute-0-5.local 24</pre>
+</div></div>
+<div class="paragraph"><p><em>r</em> means Job has started. Send a kill signal by <em>qdel jobid</em>   and check the status.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>[sjena@usernode mpi]$ qdel 4009
+sjena has registered the job 4009 for deletion
+
+[sjena@usernode mpi]$ qstat</pre>
+</div></div>
+<div class="paragraph"><p>After running qdel you’ll notice the job is gone from the queue:
+<em>qstat</em> returns nothing, i.e. <em>qdel</em> has killed the job.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_monitoring_cluster_usage">Monitoring Cluster Usage</h3>
+<div class="paragraph"><p>SGE uses <em>qstat</em> to check the job status. I have submitted 10 jobs, which need
+10 core each. I would type <em>qstat</em> and it will show me everything</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>[sjena@usernode mpi]$ qstat
+job-ID  prior name  user state submit/start at queue      slots      ja-task-ID
+...................................................................................
+   4010 0.55500 mpi-ring.q sjena  r 03/03/2017 11:35:02 all.q@compute-0-11.local 10
+   4011 0.55500 mpi-ring.q sjena  r 03/03/2017 11:35:02 all.q@compute-0-11.local 10
+   4012 0.55500 mpi-ring.q sjena  r 03/03/2017 11:35:02 all.q@compute-0-12.local 10
+   4013 0.55500 mpi-ring.q sjena  r 03/03/2017 11:35:02 all.q@compute-0-13.local 10
+   4014 0.55500 mpi-ring.q sjena  r 03/03/2017 11:35:02 all.q@compute-0-14.local 10
+   4015 0.55500 mpi-ring.q sjena  r 03/03/2017 11:35:02 all.q@compute-0-15.local 10
+   4016 0.55500 mpi-ring.q sjena  r 03/03/2017 11:35:02 all.q@compute-0-19.local 10
+   4017 0.55500 mpi-ring.q sjena  r 03/03/2017 11:35:02 all.q@compute-0-19.local 10
+   4018 0.55500 mpi-ring.q sjena  r 03/03/2017 11:35:02 all.q@compute-0-16.local 10
+   4019 0.55500 mpi-ring.q sjena  r 03/03/2017 11:35:02 all.q@compute-0-17.local 10
+[sjena@usernode mpi]$</pre>
+</div></div>
+<div class="paragraph"><p>You can also view the average load (load_avg) per node using the ‘-f’ option to qstat:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>[sjena@usernode mpi]$ qstat -f
+queuename                      qtype resv/used/tot. load_avg arch      states
+..............................................................................
+all.q@compute-0-0.local        BIP   0/0/12         0.00     linux-x64
+..............................................................................
+all.q@compute-0-1.local        BIP   0/0/12         0.00     linux-x64
+..............................................................................
+all.q@compute-0-10.local       BIP   0/0/12         0.00     linux-x64
+..............................................................................
+all.q@compute-0-11.local       BIP   0/12/12        0.00     linux-x64
+   4010 0.55500 mpi-ring.q sjena        r     03/03/2017 11:35:02    10
+   4011 0.55500 mpi-ring.q sjena        r     03/03/2017 11:35:02     2
+..............................................................................
+all.q@compute-0-12.local       BIP   0/12/12        0.00     linux-x64
+   4011 0.55500 mpi-ring.q sjena        r     03/03/2017 11:35:02     8
+   4012 0.55500 mpi-ring.q sjena        r     03/03/2017 11:35:02     4
+....
+
+....
+..............................................................................
+all.q@compute-0-8.local        BIP   0/0/12         0.00     linux-x64
+..............................................................................
+all.q@compute-0-9.local        BIP   0/0/12         0.00     linux-x64
+..............................................................................
+[sjena@usernode mpi]$</pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_qsub_scripts">qsub scripts</h3>
+<div class="paragraph"><p>In the ‘Submitting a Job’ section we submitted a single command <em>hostname</em>. This is useful for simple jobs but for more complex jobs where we need to incorporate some logic we can use a so-called <em>job script</em>. A job script is essentially a bash script that contains some logic and executes any number of external programs/scripts.
+The shell script that you submit (for example <em>job_name.sh</em>) should be written in <em>bash</em> and should
+completely describe the job, including where the inputs and outputs are to be written (if not
+specified, the default is your home directory).  The following is a simple shell script that
+defines <em>bash</em> as the job environment, calls <em>date</em>, waits 20s and then calls it again.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>#!/bin/bash
+
+# request Bourne shell as shell for job
+#$ -S /bin/bash
+
+# print date and time
+date
+# Sleep for 20 seconds
+sleep 20
+# print date and time again
+date</pre>
+</div></div>
+<div class="paragraph"><p>Note that your script has to include (usually at the end) at least one line that executes something
+- generally a compiled program but it could also be a Perl or Python script (which could also
+invoke a number of other programs). Otherwise your SGE job won&#8217;t do anything.</p></div>
+<div class="paragraph"><p>And to submit above script <em>job_name.sh</em>, you would do:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>[sjena@usernode mpi]$ qsub -V job_name.sh
+Your job 4048 ("job_name.sh.sh") has been submitted</pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_using_qsub_scripts_to_keep_data_local">Using qsub scripts to keep data local</h3>
+<div class="paragraph"><p>HPC depends on a network-shared <em>/data</em> filesystem.  The actual disks are on a network file server
+node so users are local to the data when they log in.  However, when you submit an SGE job, unless
+otherwise specified, the nodes have to read the data over the network and write it back across the
+network.  This is fine when the total data involved is a few MB, such as is often the case with
+molecular dynamics runs - small data in, lots of computation, small data out.  However, if your
+jobs involve 100s or 1000s of MB, the network traffic can grind the entire cluster to a halt.</p></div>
+<div class="paragraph"><p>To prevent this network jam, there is a large <em>/tmp</em> directory on each node (writable by all
+users, but <em>sticky</em> - files written can only be deleted by the user who wrote them or by admin.
+However, if you use hundreds of GB, the onus is on you to clean up your files and decrease that
+usage as soon as you’re done with it. (automatic script as regular cleanup will be added if needed).</p></div>
+<div class="paragraph"><p>following is an example script (self explanatory)</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>#!/bin/bash
+################################
+# Example to use /tmp space - qsub script
+# Written for IISER HPC community
+# Author: S. Jena
+# Sat Mar  4 14:23:52 IST 2017
+################################
+#
+###### BEGIN SGE PARAMETERS - note the '#$' prefix ######
+###### DO NOT SET THE -cwd flag for a /tmp job
+#
+#$ -S /bin/bash
+# specify the name of the job displayed in 'qstat' output
+#$ -N sjena-job
+#
+######## Where to keep Log Output #########
+# Make sure you have  a directory log in your HOME
+#$ -o log/
+#$ -e log/
+
+###### BEGIN  /tmp DIR CODE  ######
+# set the STDATA to point to the node-local /tmp dir and make sure you
+# place the files in your own subdir. '${USER}' is global environment
+# variable inherited by all your processes, so you shouldn't have to
+# define it explicitly
+
+#JOB_ID get the job number and we keep output in folder with this number
+
+COPUT="ANYINDEX${JOB_ID}  # change ANYINDEX to anything of your choice
+
+STDATA="/tmp/${USER}/"${COPUT}  # STDATA - Standard output folder in /tmp
+
+####$HOME is another automatic global variable
+
+MYAPP="${HOME}/test/my_executable_bin"  # Path to executable
+FOUTPUTD="${HOME}/test/output"          # final output folder (global)
+
+# 'mkdir -p' creates all the nec dirs to the final dir specified if
+# needed and does not complain if it exists already
+
+mkdir -p ${STDATA}  # creates dir on the local compute node /tmp/user
+mkdir -p ${FOUTPUTD} # creates the dir in your $HOME - final output
+
+cd ${STDATA}
+
+# since this job will be done on many nodes, just to check where it runs
+
+cd ${STDATA}
+FILE=`hostname`
+pwd
+
+${MYAPP} &gt; output.${JOB_ID}.txt   # keeping outut into a file with JOB_ID name
+
+# Once Done move out the outputs form /tmp directory
+
+cd ../
+cp -r ${COPUT} ${FOUTPUTD}/.
+
+# and clean up your mess on /tmp
+rm -rf ${COPUT} # clean up the /scratch</pre>
+</div></div>
+<div class="paragraph"><p>In this example all data output will be stored in <em>$HOME/test/output</em> and this is
+expected to be small output. If it is large output, you must redirect it to the
+NFS data-space.</p></div>
+<div class="paragraph"><p>Similarly, you can write scripts for parallel jobs.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_parallel_jobs">Parallel Jobs</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>We have already set the OpenMPI and integrated to SGE. This integration allows Sun Grid Engine
+to handle assigning hosts to parallel jobs and to properly account for parallel jobs.</p></div>
+<div class="sect2">
+<h3 id="_openmpi_parallel_environment">OpenMPI Parallel Environment</h3>
+<div class="paragraph"><p>StarCluster by default sets up a parallel environment, called <em>orte</em>, that has been
+configured for OpenMPI integration within SGE and has a number of slots equal to the
+total number of processors in the cluster. You can inspect the SGE parallel environment
+by running:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>[sjena@usernode ~]$ qconf -sp orte
+pe_name            orte
+slots              9999
+user_lists         NONE
+xuser_lists        NONE
+start_proc_args    /bin/true
+stop_proc_args     /bin/true
+allocation_rule    $fill_up
+control_slaves     TRUE
+job_is_first_task  FALSE
+urgency_slots      min
+accounting_summary TRUE
+[sjena@usernode ~]$</pre>
+</div></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note">
+</td>
+<td class="content">at this stage we don&#8217;t support <em>allocation_rule for round_robin</em>. This is important for those who are using it.
+This is the default configuration. With this allocation, if a user requests 8 slots and a single machine has 8 slots
+available, that job will run entirely on one machine. If 5 slots are available on one host and 3 on another, it will
+take all 5 on that host, and all 3 on the other host.</td>
+</tr></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_submitting_openmpi_jobs">Submitting OpenMPI Jobs</h3>
+<div class="paragraph"><p>The general workflow for running MPI code is: Compile the code using <em>mpi compilers</em> like <em>mpicc</em>.. The produced executable can be used in parallel environment of SGE.
+It is important that the path to the executable is identical on all nodes for mpirun to correctly launch your parallel code. The easiest approach is to copy the executable somewhere under <em>/home/user</em> on the usernode since <em>/home/user</em> is NFS-shared across all nodes in the cluster.</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>Run the code on X number of machines using:</pre>
+</div></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>    $ mpirun -np X -hostfile myhostfile ./mpi-executable arg1 arg2 [...]</pre>
+</div></div>
+<div class="paragraph"><p>where the hostfile looks something like:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>$ cat /path/to/hostfile
+compute-0-0    slots=4
+compute-0-1    slots=4
+compute-0-11   slots=4
+compute-0-12   slots=4
+compute-0-13   slots=4</pre>
+</div></div>
+<div class="paragraph"><p>However, when using an SGE parallel environment with OpenMPI you no longer have to specify the -np, -hostfile, -host, etc. options to mpirun.
+This is because SGE will automatically assign hosts and processors to be used by OpenMPI for your job. You also do not need to pass the -byslot and -bynode options to mpirun given that these mechanisms are now handled by the fill_up and round_robin modes specified in the SGE parallel environment.</p></div>
+<div class="paragraph"><p>Instead of using the above formulation create a simple job script that contains a very simplified mpirun call:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>$ cat myjobscript.sh
+mpirun /path/to/mpi-executable arg1 arg2 [...]</pre>
+</div></div>
+<div class="paragraph"><p>Then submit the job using the qsub command and the orte parallel environment automatically configured for you by StarCluster:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>$ qsub -pe orte 24 ./myjobscript.sh</pre>
+</div></div>
+<div class="paragraph"><p>The -pe option species which parallel environment to use and how many slots to request. The above example requests 24 slots (or processors) using the orte parallel environment. The parallel environment automatically takes care of distributing the MPI job amongst the SGE nodes using the allocation_rule defined in the environment’s settings.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note">
+</td>
+<td class="content">If you believe I have made some mistake, or the new implimentation needs more
+clarification, let me know.</td>
+</tr></table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation_of_new_software_packages">Installation of New Software/Packages</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>There are several softwares/packages are installed (open source) centrally and the list is
+available <a href="packages.html">here</a>.</p></div>
+<div class="paragraph"><p>On contrary, it is also possible to install application/software by <em>user</em> into their
+own area. Once a user compiles and install, the binary will be automatically available
+in every compute-node. In case of software with large (&gt;2GB) size,
+<em>user</em> may request to <em>sysad</em> to install the application/software centrally (follow point 2).</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note">
+</td>
+<td class="content">(1): There might be a situation where an <em>user</em> wants to install a package which
+is purchased by him/her: install it in your own area. Please note that, it will be the
+responsibility of respective <em>user</em> to take care the licensing and authorizations.</td>
+</tr></table>
+</div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note">
+</td>
+<td class="content">(2): Central installation (open-source package): <em>user</em> may request
+to install it centrally. In this case, <em>user</em> should provide us the detail of software
+(like sources, web links etc.), the dependencies, pre-requisites and compilation procedure.
+In some occasion, <em>sysad</em> may ask the concerned user to assist installation.</td>
+</tr></table>
+</div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note">
+</td>
+<td class="content">(3): Central installation (licenced package): The licencing should be of
+<em>cluster</em> type or <em>group-licence</em> type.  <em>user</em> should provide info as above and
+ provide the licencing process (may help to secure lincence).</td>
+</tr></table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_author_8217_s_note">Author&#8217;s Note</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>This document is very naive and under continuous change depending on the requests we recieve.
+It is being written from the information available with me and from several sources available
+on internet. So, Do not hesitate to contact us.</p></div>
+<div class="paragraph"><p>By <a href="mailto:sjena">S. Jena</a><br>
+Document version: V1.1.1 12/06/2017<br>
+Document version: V1.1.0 23/03/2017<br>
+Document version: V1.0.2 16/03/2017<br>
+Document version: V1.0.1 04/03/2017<br></p></div>
+</div>
+</div>
+</div>
+<div id="footnotes"><hr></div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-07-29 17:29:17 IST
+</div>
+</div>
+</body>
+</html>
