@@ -1,0 +1,62 @@
+#!/bin/bash
+################################
+# Example to use /tmp space - qsub script
+# Written for IISER HPC community
+# Author: S. Jena
+# Sat Mar  4 14:23:52 IST 2017
+################################
+#
+###### BEGIN SGE PARAMETERS - note the '#$' prefix ######
+###### DO NOT SET THE -cwd flag for a /tmp job
+#
+#$ -S /bin/bash
+# specify the name of the job displayed in 'qstat' output
+#$ -N sjena-job
+#
+######## Where to keep Log Output #########
+# Make sure you have  a directory log in your HOME
+#$ -o log/
+#$ -e log/
+
+###### BEGIN  /tmp DIR CODE  ######
+# set the STDATA to point to the node-local /tmp dir and make sure you
+# place the files in your own subdir. '${USER}' is global environment
+# variable inherited by all your processes, so you shouldn't have to
+# define it explicitly
+
+#JOB_ID get the job number and we keep output in folder with this number
+
+COPUT="ANYINDEX${JOB_ID}  # change ANYINDEX to anything of your choice
+
+STDATA="/tmp/${USER}/"${COPUT}  # STDATA - Standard output folder in /tmp
+
+####$HOME is another automatic global variable
+
+MYAPP="${HOME}/test/my_executable_bin"  # Path to executable
+FOUTPUTD="${HOME}/test/output"          # final output folder (global)
+
+# 'mkdir -p' creates all the nec dirs to the final dir specified if
+# needed and does not complain if it exists already
+
+mkdir -p ${STDATA}  # creates dir on the local compute node /tmp/user
+mkdir -p ${FOUTPUTD} # creates the dir in your $HOME - final output
+
+cd ${STDATA}
+
+# since this job will be done on many nodes, just to check where it runs
+
+cd ${STDATA}
+FILE=`hostname`
+pwd
+
+${MYAPP} > output.${JOB_ID}.txt   # keeping outut into a file with JOB_ID name
+
+# Once Done move out the outputs form /tmp directory
+
+cd ../
+cp -r ${COPUT} ${FOUTPUTD}/.
+
+# and clean up your mess on /tmp
+rm -rf ${COPUT} # clean up the /scratch
+
+
