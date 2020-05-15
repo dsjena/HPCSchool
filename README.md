@@ -1,95 +1,9 @@
 # A Minimal Know How - HPC Computing Facility
 
-The HPC cluster is configured on CentOS 6.6 with 252 64bit CPU cores, 1TB
-aggregated RAM (48GB/node), with 1G Ethernet plus 40-10G QDR Infiniband
-interconnects. About 5TB of share storage for user data with large 1TB per-node
-'/tmp' disk space as scratch space available for local needs. A sets of
-application softwares are being installed (detail can be found [here](http://172.16.22.206/packages.html) - incomplete!!!).
-Following sections show very basic information about using this cluster facility.
-
-We have setup a google group for discussions ['<hpciiserm@googlegroups.com>'](mailto:hpciiserm@googlegroups.com).
-Please send you querries to this mail id.
 
 ## How do I connect to HPC?
 
-To connect using a Mac or Linux, open the Terminal application and type:
-
-    ssh -Y yourlogin@172.16.22.201
-    # the '-Y' requests that the X11 protocol is tunneled back to you, encrypted inside of ssh.
-
-Login IP is 172.16.22.201
-
-Be sure to use the '-Y' or '-X' options, if you want to view X11 graphics. Occasionally you may
-get the error below when you try to log into HPC or among the HPC nodes:
-
-    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    @    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
-    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
-    Someone could be eavesdropping on you right now (man-in-the-middle attack)!
-    It is also possible that the RSA host key has just been changed.
-    The fingerprint for the RSA key sent by the remote host is
-    31:5f:75:e9:5c:0e:b9:6a:11:e1:7f:98:ee:c2:e8:71.
-    Please contact your system administrator.
-    Add correct host key in /root/.ssh/known_hosts to get rid of this message.
-    Offending key in /root/.ssh/known_hosts:5
-    Password authentication is disabled to avoid man-in-the-middle attacks.
-    Keyboard-interactive authentication is disabled to avoid man-in-the-middle attacks.
-    Agent forwarding is disabled to avoid man-in-the-middle attacks.
-    X11 forwarding is disabled to avoid man-in-the-middle attacks.
-
-The reason for this error is that the computer to which you’re connecting to has changed its
-identification key (Since you were using IISERM HPC earlier, you might get above
-connection error). The fix is buried in the error message itself.
-
-    Offending key in /root/.ssh/known_hosts:5
-
-Simply edit that file and delete the line referenced. When you log in again, there will be a
-notification that the key has been added to your 'known\_hosts' file. More simply, you can also
-just delete your '~/.ssh/known\_hosts' file. The missing connection info will be regenerated when
-you ssh to new nodes.
-
-After you log in…​
-
-The default shell (or environment in which you type commands) for your
-HPC login is 'bash'. I am sure, you’re going to be using HPC for more than a few times,
-it’s useful to set up a file of aliases to useful commands and then 'source' that
-file from your '~/.bashrc'.
-
-## Changing Password
-
-Once you logged into the usernode, you can change password. To change password you must
-do following
-
-    [sjena@usernode ~]$ ssh hpciiserm
-
-It will initiate a login session without any password in the server.
-
-NEVER change password in 'usernode', if you do so, it will reset to your
-old password.
-
-You should see following prompt like:
-
-    [sjena@hpciiserm ~]$
-    then do
-    [sjena@hpciiserm ~]$ passwd
-
-change your password and exit.
-
-Once you done above procedure, it will take some time 'at least 90 minutes' (automatic)
-to sync. If you exit from 'usernode' and you want to re-login within this time, your old password
-should work.
-
-Once you are logged in to 'usernode', you don’t need password to login to any computing node as
-the HPC is like a single computer with several cores available to you. However, password is needed
-to login from outside to HPC through 'usernode'. HPC is like a single computer with
-several cores available to you.
-
-## Other Basic Info - coming soon.
-
-On the login node, you shouldn’t do anything too computationally strenuous. If you run something
-that takes more than an hour or so to complete, you should be running on an interactive node or
-submit it to one of the batch queues (via 'qsub batch\_script.sh').
+To connect using a Mac or Linux, open the Terminal application and use your SSH command. Detail can be found [here](https://dsjena.github.io/HPCSchool/) 
 
 ### Can I compile code?
 
@@ -109,55 +23,7 @@ Use gnu-tool chain.
 Adding a package is similar to keeping the executation or your own program. If you keep any 'executable'
 in your area, it will be accessible in all computenode.
 
-The detail is given [here](http://172.16.22.206/hpchowto.html#_installation_of_new_software_packages).
-
-## Storage & Quota
-
-### Disk Space
-
-HPC disk storage is limited and an user quota has been set for all user spaces (/home). All users
-are given 10GB of user space. There is no notification system to inform you if you exceed the quota
-limit. When you exced the quota limit you won’t be able to perform write operation i.e. can’t create
-file or run jobs if you pass the hard quota limit.
-
-10GB of user space to keep your codes and important files. To keep large files, outputs of jobs etc., you should
-use '/home/storage1/$USER'.
-
-HPC has about 7TB of storage on to be shared among IISER HPCs users, and the instantaneous needs
-of those users varies tremendously. We do not use disk quotas on this storage to enforce user
-limits to allow substantial dynamic storage use. However, if you use hundreds of GB, the onus is
-on you to clean up your files and decrease that usage as soon as you’re done with it.
-
-(Very Important) Avoid creating huge number of files in a single directory. It will
-affect storage performance especially when your job is accessing such directories frequently.
-This is called Directory Cache Thrashing.
-
-### Scratch Space
-
-If your code accessing large I/O, you should use local scratch space. This is to prevent this network jam, there is a large '/tmp' directory on each node (writable by all
-users, but 'sticky' - files written can only be deleted by the user who wrote them or by admin.
-However, if you use hundreds of GB, the onus is on you to clean up your files and decrease that
-usage as soon as you’re done with it. (automatic script as regular cleanup will be added if needed).
-
-### Monitoring Disk Usage & Quota
-
-Use 'quota -s' command to see your ussage.
-
-    sjena@usernode~$ quota -s
-    Disk quotas for user sjena (uid 500):
-         Filesystem  blocks   quota   limit   grace   files   quota   limit   grace
-          /dev/sda1   7009M  10240M  11264M           21140   58000   60000
-
-This means:
-
-    Filesystem = /dev/sda1 : this is your home directory
-    blocks     = 7009M     : Current data usage is 7009 MB
-    quota      = 10240M    : Soft quota limit is 10GB
-    limit      = 11264M    : Hard quota limit is 11GB
-    grace      =           : if you exceed, it will set a grace period to cleanup
-    files      = 21140     : Number of files in your account
-    quota      = 58000     : Soft limit for maximum number of files you can create
-    limit      = 60000     : Hard limit for maximum number of files you can create
+The detail is given [here](https://dsjena.github.io/HPCSchool/index.html#_installation_of_new_software_packages).
 
 ## Batch Job & Queues
 
@@ -498,7 +364,7 @@ And to submit above script 'job\_name.sh', you would do:
     == Installation of New Software/Packages
 
     There are several softwares/packages are installed (open source) centrally and the list is
-    available http://172.16.22.206/packages.html[here].
+    [available](https://dsjena.github.io/HPCSchool/packages.html).
 
     On contrary, it is also possible to install application/software by 'user' into their
     own area. Once a user compiles and install, the binary will be automatically available
@@ -522,10 +388,9 @@ And to submit above script 'job\_name.sh', you would do:
     == Author's Note
 
     This document is very naive and under continuous change depending on the requests we recieve.
-    It is being written from the information available with me and from several sources available
-    on internet. So, Do not hesitate to contact us.
+    It is being written by collecting information available with me and from several sources available
+    on internet. So, Do not hesitate to contact me. 
 
-    By mailto:sjena@iisermohali.ac.in[S. Jena] +
     Document version: V1.1.1 12/06/2017 +
     Document version: V1.1.0 23/03/2017 +
     Document version: V1.0.2 16/03/2017 +
